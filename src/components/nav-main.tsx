@@ -59,7 +59,7 @@ export function NavMain({
               className="group/collapsible"
             >
               <TooltipProvider>
-                <Tooltip>
+                <Tooltip delayDuration={100}>
                   <TooltipTrigger asChild>
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
@@ -75,31 +75,35 @@ export function NavMain({
                       </CollapsibleTrigger>
                     </SidebarMenuItem>
                   </TooltipTrigger>
-                  <TooltipContent
-                    side="right"
-                    className="w-48 p-2 ml-2 bg-sidebar-accent"
-                  >
-                    {isCollapsed && item.items ? (
-                      <div className="flex flex-col py-1 text-primary">
-                        <span className="px-2 pt-1 pb-3 font-semibold">
-                          {item.title}
-                        </span>
-                        {item.items.map((subItem) => (
-                          <Link
-                            key={subItem.title}
-                            href={subItem.url}
-                            className={`px-2 py-1.5 hover:bg-sidebar-foreground ${
-                              subItem.url === pathname ? "bg-red-500" : ""
-                            }`}
-                          >
-                            {subItem.title}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : (
-                      item.title
-                    )}
-                  </TooltipContent>
+                  {isCollapsed && item.items ? (
+                    <TooltipContent
+                      side="right"
+                      className="w-48 p-2 ml-2 bg-sidebar-accent"
+                    >
+                      {isCollapsed && item.items && (
+                        <div className="flex flex-col py-1 text-primary">
+                          <span className="px-2 pt-1 pb-3 font-semibold">
+                            {item.title}
+                          </span>
+                          {item.items.map((subItem) => (
+                            <Link
+                              key={subItem.title}
+                              href={subItem.url}
+                              className={`px-2 py-1.5 hover:bg-foreground/5 rounded-md ${
+                                subItem.url === pathname
+                                  ? "bg-red-500 text-white hover:text-foreground"
+                                  : ""
+                              }`}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </TooltipContent>
+                  ) : (
+                    <></>
+                  )}
                 </Tooltip>
               </TooltipProvider>
               {!isCollapsed && item.items && (
