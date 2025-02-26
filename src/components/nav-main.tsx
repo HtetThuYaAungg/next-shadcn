@@ -42,8 +42,9 @@ export function NavMain({
   }[];
 }) {
   const pathname = usePathname();
-  const { state } = useSidebar();
+  const { state, isMobile } = useSidebar();
   const isCollapsed = state === "collapsed";
+  console.log("isMobile is ", isMobile);
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -61,21 +62,28 @@ export function NavMain({
               <TooltipProvider>
                 <Tooltip delayDuration={100}>
                   <TooltipTrigger asChild>
-                    <SidebarMenuItem>
-                      <CollapsibleTrigger asChild>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuItem>
                         <SidebarMenuButton
                           className={`${isActive ? "text-red-500" : ""}`}
                         >
                           {item.icon && <item.icon />}
                           <span>{item.title}</span>
-                          {item.items && !isCollapsed && (
-                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                          {item.items && !isCollapsed && !isMobile ? (
+                            <>
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            </>
+                          ) : (
+                            <>
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            </>
                           )}
                         </SidebarMenuButton>
-                      </CollapsibleTrigger>
-                    </SidebarMenuItem>
+                      </SidebarMenuItem>
+                    </CollapsibleTrigger>
                   </TooltipTrigger>
-                  {isCollapsed && item.items ? (
+
+                  {isCollapsed && !isMobile && item.items ? (
                     <TooltipContent
                       side="right"
                       className="w-48 p-2 ml-2 bg-sidebar-accent"
@@ -106,7 +114,7 @@ export function NavMain({
                   )}
                 </Tooltip>
               </TooltipProvider>
-              {!isCollapsed && item.items && (
+              {item.items && (
                 <CollapsibleContent>
                   <SidebarMenuSub>
                     {item.items.map((subItem) => (

@@ -2,14 +2,6 @@ import { AppSidebar } from "@/components/app-sidebar";
 import DynamicBreadcrumb from "@/components/bread_crumb";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ToggleMode } from "@/components/toggle-mode";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -40,7 +32,7 @@ const Main = ({
         >
           <AppSidebar />
           <SidebarInset>
-            <header className="sticky top-0 flex shrink-0 items-center justify-between gap-2 border-b bg-background p-0.5 px-2">
+            <header className="sticky top-0 flex shrink-0 items-center justify-between gap-2 border-b bg-background p-1 px-2">
               <div className="flex items-center">
                 <SidebarTrigger className="-ml-1 mr-2" />
                 <Separator orientation="vertical" className="mr-2 h-4" />
