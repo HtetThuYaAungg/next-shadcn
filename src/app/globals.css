@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   :root {
+    --active: 359 100% 35.7%;
 
     --background: 0 0% 100%;
 
@@ -55,8 +54,7 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem
-  ;
+    --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -72,8 +70,10 @@
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
   .dark {
+    --active: 359 100% 35.7%;
 
     --background: 240 10% 3.9%;
 
@@ -121,8 +121,7 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%
-  ;
+    --chart-5: 340 75% 55%;
 
     --sidebar-background: 240 5.9% 10%;
 
@@ -138,10 +137,9 @@
 
     --sidebar-border: 240 3.7% 15.9%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
-
-
 
 @layer base {
   * {
@@ -151,5 +149,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-
